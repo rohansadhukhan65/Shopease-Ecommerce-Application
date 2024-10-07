@@ -14,12 +14,17 @@ interface Iprops {
 const ProdcutSlider: React.FC<Iprops> = ({ title }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  const getRandomItems = (arr: any, numItems: number) => {
+    // Shuffle the array and return the first `numItems` items
+    return arr.sort(() => 0.5 - Math.random()).slice(0, numItems);
+  };
+
   const fetchProducts = async () => {
     try {
       const response = await fetch("https://dummyjson.com/products");
       if (response.ok) {
         const { products } = await response.json();
-        setProducts(products);
+        setProducts(getRandomItems(products,15));
       }
     } catch (error) {
       console.log(error);
@@ -30,14 +35,12 @@ const ProdcutSlider: React.FC<Iprops> = ({ title }) => {
     fetchProducts();
   }, []);
   return (
-    <div className="ProductSlider">
-      {title}
+    <div className="ProductSlider my-10">
+      <div className="text-3xl mb-3 text-center">{title}</div>
       <Swiper
         modules={[Navigation]}
         spaceBetween={10}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation={true}
         breakpoints={{
           1440: {
@@ -54,7 +57,7 @@ const ProdcutSlider: React.FC<Iprops> = ({ title }) => {
         className="flex items-center justify-center"
       >
         {products.map((product) => (
-          <SwiperSlide key={product.title} >
+          <SwiperSlide key={product.title}>
             <ProductCard productData={product} />
           </SwiperSlide>
         ))}
