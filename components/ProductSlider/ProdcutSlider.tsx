@@ -14,7 +14,7 @@ interface Iprops {
 const ProdcutSlider: React.FC<Iprops> = ({ title }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  const getRandomItems = (arr , numItems) => {
+  const getRandomItems = (arr :unknown, numItems:number) => {
     // Shuffle the array and return the first `numItems` items
     return arr.sort(() => 0.5 - Math.random()).slice(0, numItems);
   };
