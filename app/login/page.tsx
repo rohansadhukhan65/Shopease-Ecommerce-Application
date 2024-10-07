@@ -1,8 +1,12 @@
 import { CartIcon } from '@/components/Icons'
+import Nav from '@/components/Nav'
 import React from 'react'
 
 const Login = () => {
   return (
+    <>
+<Nav/>    
+
     <div className='h-[80dvh] w-full flex justify-center items-center'>
       <div className=''>
         <p className='flex text-black font-bold items-center gap-2'> <span className='text-2xl'>Login</span>  <span className='bg-primary rounded-md -rotate-12'><CartIcon/></span> </p>
@@ -15,6 +19,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
